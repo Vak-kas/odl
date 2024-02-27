@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Slider, Slide, SlideDetail
+from .models import Slider, Slide, SlideDetail, LatestCourse
 
 class SlideDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +21,9 @@ class SliderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slider
         fields = ['id', 'sliderName', 'assignToPage', 'createdDate', 'updatedDate', 'slides']
+
+
+class LatestCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LatestCourse
+        fields = '__all__'

@@ -1,10 +1,13 @@
 from django.shortcuts import render,HttpResponse, get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import Slider, Slide, SlideDetail
-from .serializers import SliderSerializer, SlideSerializer, SlideDetailSerializer
+from .models import Slider, Slide, SlideDetail, LatestCourse
+from .serializers import SliderSerializer, SlideSerializer, SlideDetailSerializer, LatestCourseSerializer
 from django.utils import timezone
 from rest_framework import viewsets
+
+
+
 
 
 
@@ -84,6 +87,7 @@ class SlideViewSet(viewsets.ModelViewSet):
         # 해당 ID를 가진 Slider 인스턴스를 가져옵니다.
         slider = get_object_or_404(Slider, pk=slider_id)
         # Slide 객체를 저장하며 Slider 인스턴스를 연결합니다.
+        print("테스트")
         serializer.save(slider=slider)
 
 
@@ -139,5 +143,9 @@ class SlideDetailViewSet(viewsets.ModelViewSet):
 
 
 
+
+class LatestCourseViewSet(viewsets.ModelViewSet):  # 오타 수정
+    queryset = LatestCourse.objects.all()
+    serializer_class = LatestCourseSerializer
 
 

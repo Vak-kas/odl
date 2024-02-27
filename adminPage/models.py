@@ -20,8 +20,8 @@ class Slide(models.Model):
     image = models.ImageField(upload_to='slides/', verbose_name="이미지")
     sloganHeading = models.CharField(max_length=100, verbose_name="올릴 내용")
     caption = models.CharField(max_length=100, verbose_name="올릴 내용")
-    description = models.TextField(blank=True, verbose_name="설명")
-    link = models.URLField(blank=True, verbose_name="링크")
+    description = models.TextField(blank=True, verbose_name="설명", null=True)
+    link = models.URLField(blank=True, verbose_name="링크", null=True)
     order = models.IntegerField(default=0, verbose_name="순서")
     isActive = models.BooleanField(default=True, verbose_name="활성 상태")
     createdDate = models.DateTimeField(auto_now_add=True, verbose_name="생성 날짜")
@@ -43,3 +43,9 @@ class SlideDetail(models.Model):
     def __str__(self):
         return f"Detail for {self.slide.sloganHeading}"
 
+
+
+class LatestCourse(models.Model):
+    image = models.ImageField(upload_to='latest/', verbose_name="이미지")
+    title = models.CharField(max_length=50, verbose_name="제목")
+    price = models.FloatField(verbose_name="가격")
